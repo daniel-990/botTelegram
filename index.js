@@ -23,18 +23,19 @@ bot.onText(/\/hola (.+)/, (msg, match) => {
   bot.sendMessage(chatId, resp);
 });
 
-bot.onText(/\/love/, function onLoveText(msg) {
+bot.onText(/\/opciones/, function onLoveText(msg) {
     const opts = {
       reply_to_message_id: msg.message_id,
       reply_markup: JSON.stringify({
         keyboard: [
-          ['Si'],
-          ['No']
+          ['MARTE'],
+          ['CALCULADORA'],
+          ['FILOSOFIA']
         ]
       })
     };
-    console.log(opts);
-    bot.sendMessage(msg.chat.id, 'Tu me quieres?', opts);
+    //console.log(opts);
+    bot.sendMessage(msg.chat.id, '¿Quieres tener mas opciones?', opts);
 });
 
 //se ecuchanlos mensajes
@@ -48,7 +49,7 @@ bot.on('message', (msg) => {
       })
   }
   //monitoreo de datos del bot
-  //console.log(opciones.reply_markup);
+  console.log(opciones.reply_markup);
   
   // se imprimen las respuestas
   bot.sendMessage(chatId, 'su mensaje fue recivido \nsu ID de chat es: '+chatId);
@@ -56,4 +57,11 @@ bot.on('message', (msg) => {
   console.log("nombre: "+msg.chat.first_name);
   console.log("mensaje id: "+msg.message_id);
   console.log("mensaje que se recibe del chat: "+msg.text);
+  //validacion de opciones
+  if(msg.text == "MARTE"){
+    console.log("la opcion es: "+msg.text);
+    bot.sendMessage(chatId, "la opcion es: "+msg.text);
+  }else{
+    bot.sendMessage(chatId, "opcion diferente: "+msg.text);
+  }
 });
