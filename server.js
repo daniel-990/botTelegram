@@ -1,5 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
-const config = require('Config');
+const config = require('config');
 
 //utilidades
 const express = require('express');
@@ -49,7 +49,6 @@ app.get("/", (req, res) => {
   res.send("Hola mundo!!!");
 });
 
-const initApp = () => {
   //se ecuchan los mensajes se prende el bot
   bot.on('message', (msg) => {
     const chatId = msg.chat.id;
@@ -71,23 +70,22 @@ const initApp = () => {
     console.log("mensaje: "+msg.text);
     //validacion de opciones
   
-      //custom chats
-        if(chatId === usuario1 && msg.text == "Hola"){
-          bot.sendMessage(chatId,`Hola ${msg.chat.first_name} soy un Bot de pruebas, si ingresas /coin te dare el dato de las monedas digitales y precio actual, si ingresas /fecha te doy la fecha actual y \ncreo que ya nos conociamos de antes, esta nota es para ti, te la deja un tal @xorroPerro quieres saber cual es la nota? /si, /no`);
-        }
-        if(chatId === usuario1 && msg.text == "/si"){
-          bot.sendMessage(chatId,`Imaginar lo imposible, tratar de merecer un corazon inquieto, alternar el instante entre escritos de Bukowski, cervezas y un beso con el sabor a la mujer amada`);
-          console.log("entro en la condicion del si");
-          console.log("mensaje2: "+msg.text);
-        }
-        if(chatId === usuario1 && msg.text == "/no"){
-          bot.sendMessage(chatId,`Bueno igual no fue la nota pero para re-escuchar un poco en la mañana \nesta cancion que te deja mi creador: https://www.youtube.com/watch?v=p6E24jdWR-s&ab_channel=enlaterraza`);
-        }
-      //custom chats
-  
-        if(chatId != usuario1){
-          bot.sendMessage(chatId,`Hola ${msg.chat.first_name} este es un Bot de pruebas, \ningresa /coin, para saber el tipo de monedas digitales o \n/fecha, para saber la fecha actual`);
-        }
+    //custom chats
+    if(chatId === usuario1 && msg.text == "Hola"){
+      bot.sendMessage(chatId,`Hola ${msg.chat.first_name} soy un Bot de pruebas, si ingresas /coin te dare el dato de las monedas digitales y precio actual, si ingresas /fecha te doy la fecha actual y \ncreo que ya nos conociamos de antes, esta nota es para ti, te la deja un tal @xorroPerro quieres saber cual es la nota? /si, /no`);
+    }
+    if(chatId === usuario1 && msg.text == "/si"){
+      bot.sendMessage(chatId,`Imaginar lo imposible, tratar de merecer un corazon inquieto, alternar el instante entre escritos de Bukowski, cervezas y un beso con el sabor a la mujer amada`);
+      console.log("entro en la condicion del si");
+      console.log("mensaje2: "+msg.text);
+    }
+    if(chatId === usuario1 && msg.text == "/no"){
+      bot.sendMessage(chatId,`Bueno igual no fue la nota pero para re-escuchar un poco en la mañana \nesta cancion que te deja mi creador: https://www.youtube.com/watch?v=p6E24jdWR-s&ab_channel=enlaterraza`);
+    }
+    //custom chats
+    if(chatId != usuario1){
+      bot.sendMessage(chatId,`Hola ${msg.chat.first_name} este es un Bot de pruebas, \ningresa /coin, para saber el tipo de monedas digitales o \n/fecha, para saber la fecha actual`);
+    }
   
   
     if(msg.text == "/fecha"){
@@ -137,10 +135,8 @@ const initApp = () => {
       bot.sendMessage(chatId, "aun en construccion");
     }
   });
-}
 
 app.listen(port, () => {
   console.log(`esta corriendo por el puerto http://localhost:${port}`);
-  initApp();
 });
 
