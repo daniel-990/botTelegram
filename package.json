@@ -1,13 +1,22 @@
 {
-  "name": "mibot",
+  "name": "botTelegram",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daniel-990/botTelegram"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniel-990/botTelegram/issues"
+  },
+  "homepage": "https://github.com/daniel-990/botTelegram/blob/main/README.md",
   "dependencies": {
     "axios": "^1.2.2",
     "body-parser": "^1.20.1",
