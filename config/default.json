@@ -1,5 +1,8 @@
 {
     "tokens": {
         "telegramBot":"5613780651:AAHqGVu8u3ZFtOuxllA7Cm-7Jk_cfpCNuMw"
+    },
+    "puertos":{
+        "puerto1":3000
     }
 }
