@@ -103,8 +103,11 @@ app.get("/", (req, res) => {
 
         console.log(horalTotal);
 
+        bot.sendMessage(chatId,`frases de buenos dias`);
+
+        //configuracion de hora para notificar
         if(horalTotal == "14:18:0"){
-          alert("hola "+horalTotal);
+          bot.sendMessage(chatId,`frase!! ${horalTotal}`);
         }
 
       }
