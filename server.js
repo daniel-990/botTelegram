@@ -70,18 +70,48 @@ app.get("/", (req, res) => {
     console.log("mensaje: "+msg.text);
     //validacion de opciones
   
-    //custom chats
+    //custom chats usuario Less
     if(chatId === usuario1 && msg.text == "Hola"){
-      bot.sendMessage(chatId,`Hola ${msg.chat.first_name} soy un Bot de pruebas, si ingresas /coin te dare el dato de las monedas digitales y precio actual, si ingresas /fecha te doy la fecha actual y \ncreo que ya nos conociamos de antes, esta nota es para ti, te la deja un tal @xorroPerro quieres saber cual es la nota? /si, /no`);
+      bot.sendMessage(chatId,`Hola ${msg.chat.first_name} soy un Bot de pruebas, si ingresas /coin te dare el dato de las monedas digitales y precio actual, si ingresas /fecha te doy la fecha actual y \ncreo que ya nos conociamos de antes, esta nota es para ti, te la deja un tal @xorroPerro quieres saber cual es la nota? si, no`);
     }
-    if(chatId === usuario1 && msg.text == "/si"){
+    if(chatId === usuario1 && msg.text == "si"){
       bot.sendMessage(chatId,`Imaginar lo imposible, tratar de merecer un corazon inquieto, alternar el instante entre escritos de Bukowski, cervezas y un beso con el sabor a la mujer amada`);
       console.log("entro en la condicion del si");
       console.log("mensaje2: "+msg.text);
     }
-    if(chatId === usuario1 && msg.text == "/no"){
+    if(chatId === usuario1 && msg.text == "no"){
       bot.sendMessage(chatId,`Bueno igual no fue la nota pero para re-escuchar un poco en la mañana \nesta cancion que te deja mi creador: https://www.youtube.com/watch?v=p6E24jdWR-s&ab_channel=enlaterraza`);
     }
+
+    if(chatId === usuario2 && msg.text == "/alertas"){
+      
+      const contador = () =>{
+
+        let fechaActual1 = new Date();
+        let fechaActual2 = new Date();
+        let fechaActual3 = new Date();
+
+        var horas = fechaActual1.getHours();
+        var minutos = fechaActual2.getMinutes();
+        var segundos = fechaActual3.getSeconds();
+        //----
+        var horasStr = horas.toString();
+        var minutosStr = minutos.toString();
+        var segundosStr = segundos.toString();
+
+        var horalTotal = horasStr+":"+minutosStr+":"+segundosStr;
+
+        console.log(horalTotal);
+
+        if(horalTotal == "14:18:0"){
+          alert("hola "+horalTotal);
+        }
+
+      }
+      setInterval(contador, 1000);
+    }
+
+
     //custom chats
     if(chatId != usuario1){
       bot.sendMessage(chatId,`Hola ${msg.chat.first_name} este es un Bot de pruebas, \ningresa /coin, para saber el tipo de monedas digitales o \n/fecha, para saber la fecha actual`);
