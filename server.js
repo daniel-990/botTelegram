@@ -45,9 +45,9 @@ bot.onText(/\/hola (.+)/, (msg, match) => {
 // });
 
 //se inicia la app
-app.get("/", (req, res) => {
-  res.send("Hola mundo!!!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hola mundo!!!");
+// });
 
   //se ecuchan los mensajes se prende el bot
   bot.on('message', (msg) => {
@@ -69,7 +69,8 @@ app.get("/", (req, res) => {
     console.log("mensaje id: "+msg.message_id);
     console.log("mensaje: "+msg.text);
     //validacion de opciones
-  
+    let stop_ = "";
+
     //custom chats usuario Less
     if(chatId === usuario1 && msg.text == "Hola"){
       bot.sendMessage(chatId,`Hola ${msg.chat.first_name} soy un Bot de pruebas, si ingresas /coin te dare el dato de las monedas digitales y precio actual, si ingresas /fecha te doy la fecha actual y \ncreo que ya nos conociamos de antes, esta nota es para ti, te la deja un tal @xorroPerro quieres saber cual es la nota? si, no`);
@@ -83,7 +84,7 @@ app.get("/", (req, res) => {
       bot.sendMessage(chatId,`Bueno igual no fue la nota pero para re-escuchar un poco en la mañana \nesta cancion que te deja mi creador: https://www.youtube.com/watch?v=p6E24jdWR-s&ab_channel=enlaterraza`);
     }
 
-    if(chatId === usuario2 && msg.text == "/alertas"){
+    if(chatId === usuario2 && msg.text === "alertas"){
       
       const contador = () =>{
 
@@ -101,17 +102,21 @@ app.get("/", (req, res) => {
 
         var horalTotal = horasStr+":"+minutosStr+":"+segundosStr;
 
-        console.log(horalTotal);
-
-        bot.sendMessage(chatId,`frases de buenos dias`);
-
+        //console.log("Hora local: "+horalTotal);
+        //console.log("fecha local: "+fechaActual1);
         //configuracion de hora para notificar
-        if(horalTotal == "14:18:0"){
-          bot.sendMessage(chatId,`frase!! ${horalTotal}`);
+        if(horalTotal === "11:00:0"){
+          bot.sendMessage(chatId,"frase!! "+horalTotal);
+          console.log(horalTotal);
         }
 
       }
-      setInterval(contador, 1000);
+      stop_ = setInterval(contador, 1000);
+    }
+
+    if(chatId === usuario2 && msg.text == "stop"){
+      clearInterval(stop_);
+      bot.sendMessage(chatId,"stop");
     }
 
 
@@ -122,7 +127,7 @@ app.get("/", (req, res) => {
   
   
     if(msg.text == "/fecha"){
-      let now= new Date();
+      let now = new Date();
       console.log('La fecha actual es',now);
       console.log('UNIX time:',now.getTime());
       bot.sendMessage(chatId, "fecha actual: "+now);
